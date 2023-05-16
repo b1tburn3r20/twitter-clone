@@ -1,11 +1,23 @@
 <header>
     <nav class="navbar">
-        <ul class="navbar-list">
-            <li class="navbar-item"><a href="/">Home</a></li>
-            <li class="navbar-item"><a href="/explore">Explore</a></li>
-            <li class="navbar-item"><a href="/register">Register</a></li>
-            <li class="navbar-item"><a href="/messages">Messages</a></li>
-            <li class="navbar-item"><a href="/profile">Profile</a></li>
-        </ul>
+      <ul class="navbar-list">
+        <li class="navbar-item"><a href="/">Home</a></li>
+        <li class="navbar-item"><a href="/explore">Explore</a></li>
+        <% if (user) { %>
+          <li class="navbar-item"><a href="/performers/new">Add Performer</a></li>
+          <li class="navbar-item"><a href="/movies/new">Add Movie</a></li>
+          <li class="navbar-item"><a href="/logout">Log Out</a></li>
+          <li class="navbar-item"><a href="/messages">Messages</a></li>
+          <li class="navbar-item"><a href="/profile">Profile</a></li>
+        <% } else { %>
+          <li class="navbar-item"><a href="/register">Register</a></li>
+          <li class="navbar-item">
+            <a href="/auth/google" class="login">
+              Log In
+            </a>
+          </li>
+        <% } %>
+      </ul>
     </nav>
-</header>
+  </header>
+  
