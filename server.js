@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+var passport = require('passport');
+
 
 
 var postRouter = require('./routes/home');
@@ -15,6 +17,8 @@ const methodOverride = require('method-override')
 
 require('dotenv').config();
 require('./config/connection');
+require('./config/passport');
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -33,6 +37,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.get('/', (req, res) => {
   res.redirect('/posts');
