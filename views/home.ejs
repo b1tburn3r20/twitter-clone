@@ -1,24 +1,60 @@
 <%- include('./partials/navbar.ejs') %>
 <%- include('./partials/header.ejs') %>
 
-    <section>
-        <button id="postBtn">Make Post</button>
-        <form id="postForm" action="/posts/new" method="POST" class="hidden">
-            <input name="postContent" type="text">
-            <button type="submit">Post</button>
-        </form>
-    </section>
-    <section>
-        <div class="feed">
-            <% allPosts.forEach(post => { %>
-                <div class="post">
-                    <form  action="/posts/<%=`${post._id}` %>/delete?_method=DELETE" method="POST">
-                        <button type="submit" >x</button>
-                        <p> 
-                        </p>
-                    </form> <%= post.postContent %> 
-                </div>
-         <%  }); %>
-        </div>
-    </section>
-    <%- include('./partials/footer.ejs') %>
+<section>
+    <button id="postBtn">Make Post</button>
+    <form id="postForm" action="/posts/new" method="POST" class="hidden">
+        <input name="postContent" type="text">
+        <button type="submit">Post</button>
+    </form>
+</section>
+<section>
+    <div class="feed">
+        <% allPosts.forEach(post => { %>
+            <div class="post">
+                <form action="/posts/<%= post._id %>/delete?_method=DELETE" method="POST">
+                    <button type="submit">x</button>
+                    <p><%= post.postContent %></p>
+                </form>
+                <form action="/posts/<%= post._id %>/comments" method="POST">
+                    <input name="content" type="text" placeholder="Add a comment">
+                    <button type="submit">Comment</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (post.comments && post.comments.length > 0) { %>
+                            <% post.comments.forEach(comment => { %>
+                                <tr>
+                                    <td class="comment-user">
+                                        <img alt="avatar" src="<%= comment.userAvatar %>" referrerpolicy="no-referrer">
+                                        <%= comment.userName %>
+                                    </td>
+                                    <td><%= comment.createdAt.toLocaleDateString() %></td>
+                                    <td><%= comment.content %></td>
+                                    <td>
+                                        <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                            <button type="submit">Delete Comment</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="4">No comments yet.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>                    
+                </table>
+            </div>
+        <% }); %>
+    </div>
+</section>
+
+<%- include('./partials/footer.ejs') %>

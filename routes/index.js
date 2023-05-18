@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const postCtrl = require('../controllers/posts');
 
 // GET /movies
-router.get('/', postCtrl.show)
+router.get('/', function (req, res) {
+    res.redirect("/posts")
+})
 
 //GOOGLE OAUTH
 
@@ -24,20 +25,17 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
     'google',
     {
-        successRedirect: '/movies',
-        failureRedirect: '/movies'
+        successRedirect: '/posts',
+        failureRedirect: '/posts'
     }
 ));
 // OAuth logout route
 router.get('/logout', function (req, res) {
     req.logout(function () {
-        res.redirect('/movies');
+        res.redirect('/posts');
     });
 });
 
-router.post('/new', postCtrl.create)
 
-//
-router.delete('/:id/delete', postCtrl.deletePost)
 
 module.exports = router

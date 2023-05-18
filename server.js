@@ -5,20 +5,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-
-
-var postRouter = require('./routes/home');
-var registerRouter = require('./routes/register')
-
+var indexRouter = require('./routes/index');
+var postRouter = require('./routes/posts');
+var registerRouter = require('./routes/register');
+var commentsRouter = require('./routes/comments');
 
 var app = express();
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
 require('dotenv').config();
 require('./config/connection');
 require('./config/passport');
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -44,18 +43,17 @@ app.use(function (req, res, next) {
   res.locals.user = req.user;
   next();
 });
-app.get('/', (req, res) => {
-  res.redirect('/posts');
-});
 
+app.use('/', indexRouter);
+app.use('/register', registerRouter);
 app.use('/posts', postRouter);
-app.use('/register', registerRouter)
+app.use('/posts/:postId/comments', commentsRouter); // use the comments router here
 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
-}); ``
+});
 
 // error handler
 app.use(function (err, req, res, next) {
