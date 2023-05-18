@@ -12,21 +12,30 @@
     <div class="feed">
         <% allPosts.forEach(post => { %>
             <div class="post">
+                <img alt="avatar" src="<%= post.profilePicture %>" referrerpolicy="no-referrer">
+                <p><%= post.userName %></p>
+                <p><%= post.createdAt.toLocaleDateString() %></p>
+                <!-- Delete post form -->
                 <form action="/posts/<%= post._id %>/delete?_method=DELETE" method="POST">
                     <button type="submit">x</button>
-                    <p><%= post.postContent %></p>
+                    <p class="post-content"><%= post.postContent %></p>
                 </form>
+                <!-- Edit post form, initially hidden -->
+                <form class="editForm" action="/posts/<%= post._id %>?_method=PUT" method="POST" style="display: none;">
+                    <input name="postContent" type="text" value="<%= post.postContent %>">
+                    <button type="submit">Save</button>
+                </form>
+                <!-- Edit post button -->
+                <button class="editButton">Edit</button>
+                <!-- Add a comment form -->
                 <form action="/posts/<%= post._id %>/comments" method="POST">
                     <input name="content" type="text" placeholder="Add a comment">
                     <button type="submit">Comment</button>
                 </form>
+                <!-- Comments table -->
                 <table>
                     <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Comment</th>
-                        </tr>
+                        
                     </thead>
                     <tbody>
                         <% if (post.comments && post.comments.length > 0) { %>
@@ -39,6 +48,7 @@
                                     <td><%= comment.createdAt.toLocaleDateString() %></td>
                                     <td><%= comment.content %></td>
                                     <td>
+                                        <!-- Delete comment form -->
                                         <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                                             <button type="submit">Delete Comment</button>
                                         </form>
@@ -58,3 +68,15 @@
 </section>
 
 <%- include('./partials/footer.ejs') %>
+
+<script>
+    // Attach click event listener to each 'Edit' button
+    document.querySelectorAll('.editButton').forEach(button => {
+        button.addEventListener('click', (event) => {
+            // Hide the corresponding post content and show the edit form
+            const post = event.target.parentElement;
+            post.querySelector('.post-content').style.display = 'none';
+            post.querySelector('.editForm').style.display = 'block';
+        });
+    });
+</script>
