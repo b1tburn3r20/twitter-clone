@@ -1,4 +1,4 @@
-const Post = require('../models/post');
+const { Post } = require('../models/post');
 
 module.exports = {
     create,
@@ -7,22 +7,21 @@ module.exports = {
 
 async function create(req, res) {
     try {
-        const postId = req.params.postId;
+        const postId = req.params.id;
         const post = await Post.findById(postId);
 
         if (!post) {
             // Handle the case where the post is not found
             return res.redirect('/posts');
         }
-
+        console.log(req.user)
         const commentData = {
             content: req.body.content,
             // Add user-related data as needed
-            // user: req.user._id,
-            // userName: req.user.displayName,
-            // userAvatar: req.user.photos[0].value,
+            userName: req.user.name,
+            userProfilePicture: req.user.avatar
         };
-
+        console.log(req.body, commentData)
         post.comments.push(commentData);
         await post.save();
 
@@ -38,9 +37,10 @@ async function create(req, res) {
 
 async function deleteComment(req, res) {
     try {
-        const commentId = req.params.commentId;
+        const { id: postId, commentId } = req.params;
+
         const post = await Post.findOneAndUpdate(
-            { 'comments._id': commentId },
+            { _id: postId, 'comments._id': commentId },
             { $pull: { comments: { _id: commentId } } },
             { new: true }
         );

@@ -33,7 +33,7 @@
                             <% post.comments.forEach(comment => { %>
                                 <tr>
                                     <td class="comment-user">
-                                        <img alt="avatar" src="<%= comment.userAvatar %>" referrerpolicy="no-referrer">
+                                        <img alt="avatar" src="<%= comment.userProfilePicture %>" referrerpolicy="no-referrer">
                                         <%= comment.userName %>
                                     </td>
                                     <td><%= comment.createdAt.toLocaleDateString() %></td>
