@@ -9,7 +9,7 @@ module.exports = {
 
 async function show(req, res) {
     try {
-        const allPosts = await Post.find({});
+        const allPosts = await Post.find({}).sort('-createdAt');
         console.log(allPosts);
         res.render('home', { allPosts });
     } catch (err) {
@@ -17,6 +17,7 @@ async function show(req, res) {
         res.redirect('/error'); // Handle the error appropriately
     }
 }
+
 
 async function create(req, res) {
     try {

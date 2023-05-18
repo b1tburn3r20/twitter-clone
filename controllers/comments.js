@@ -14,7 +14,6 @@ async function create(req, res) {
             // Handle the case where the post is not found
             return res.redirect('/posts');
         }
-        console.log(req.user)
         const commentData = {
             content: req.body.content,
             // Add user-related data as needed
@@ -22,7 +21,7 @@ async function create(req, res) {
             userProfilePicture: req.user.avatar
         };
         console.log(req.body, commentData)
-        post.comments.push(commentData);
+        post.comments.unshift(commentData);
         await post.save();
 
         // Redirect back to the /posts page
@@ -33,6 +32,7 @@ async function create(req, res) {
         res.redirect('/posts');
     }
 }
+
 
 
 async function deleteComment(req, res) {
