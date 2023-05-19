@@ -1,7 +1,8 @@
-*{
+* {
   padding: 0;
   margin: 0;
 }
+
 body {
   background-color: #15202B;
   color: #FFFFFF;
@@ -15,6 +16,7 @@ body {
   position: fixed;
   background-color: #192734;
   display: flex; /* Added to help center items */
+  z-index: 9999; /* Set a higher z-index to appear on top of other elements */
 }
 
 .navbar-list {
@@ -41,19 +43,24 @@ body {
   justify-content: center; /* Center items horizontally */
 }
 
-.navbar-item a:hover, .navbar-item a:focus {
+.navbar-item a:hover,
+.navbar-item a:focus {
   color: #1DA1F2;
 }
 
 .navbar-item i {
   margin-right: 10px;
 }
+
 .post-body {
-  background-color:transparent;
+  background-color: transparent;
   padding: 1rem;
   margin: 1rem;
-  border: 1px solid rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
+.fa-brands.fa-twitter {
+  font-size: 2rem;
+}

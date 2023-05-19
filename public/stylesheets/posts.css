@@ -289,3 +289,52 @@ section {
   margin: 0;
   padding: 0.2rem 0.5rem;
 }
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Added to horizontally center the content */
+  background-color: rgb(21,32,43);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.brand i {
+  color: #ffffff;
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+.brand h1 {
+  color: #ffffff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.main-section {
+  margin-top: 80px; /* Adjust this value to accommodate the navbar height */
+  padding: 2rem;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #15202B;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1DA1F2;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0D7BB6;
+}
+#postInput {
+  height: 50px;
+  font-size: 1rem;
+}
