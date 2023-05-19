@@ -1,24 +1,59 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #15202B;
+  color: #FFFFFF;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.2rem; /* Adjust as needed */
+}
+
 .navbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 10px 0;
-    border-bottom: 1px solid #e6ecf0;
+  width: 250px; /* Adjusted to make navbar wider */
+  height: 100vh;
+  position: fixed;
+  background-color: #192734;
+  display: flex; /* Added to help center items */
 }
 
 .navbar-list {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* Full width to take up all the navbar space */
+  display: flex; /* Added to help center items */
+  flex-direction: column; /* Stack the items vertically */
+  align-items: center; /* Center items horizontally since direction is column */
+}
+
+.navbar-item {
+  padding: 1.5rem; /* Adjust as needed */
+  text-align: center; /* Center the text */
+  width: 100%; /* Full width to take up all the navbar space */
 }
 
 .navbar-item a {
-    text-decoration: none;
-    color: #1da1f2;
-    font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  display: flex; /* Added to help center items and text */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
 }
 
-.navbar-item a:hover {
-    color: #0c84d2;
+.navbar-item a:hover, .navbar-item a:focus {
+  color: #1DA1F2;
 }
+
+.navbar-item i {
+  margin-right: 10px;
+}
+.post-body {
+  background-color:transparent;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 10px;
+  color: #FFFFFF;
+}
+
