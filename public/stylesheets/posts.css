@@ -338,3 +338,63 @@ section {
   height: 50px;
   font-size: 1rem;
 }
+.comment {
+  font-size: 0.7rem; /* Adjust the font size as needed */
+}
+
+.comment img {
+  width: 35px; /* Adjust the image size as needed */
+  height: 35px;
+}
+
+.comment .username {
+  font-size: 0.9rem; /* Adjust the font size as needed */
+}
+
+.comment .comment-text {
+  font-size: 0.9rem; /* Adjust the font size as needed */
+}
+.comment-footer {
+  display: flex;
+  align-items: center;
+}
+
+.comment-footer .timestamp {
+  margin-right: 0.5rem;
+}
+
+.comment-footer .deleteButton {
+  margin-left: 0.5rem;
+}
+.comment-user {
+  display: flex;
+  align-items: center;
+}
+
+.comment-user .avatar {
+  margin-right: 10px;
+}
+.comment-footer {
+  display: flex;
+  align-items: center;
+}
+
+.comment-footer .timestamp {
+  margin-right: 0.5rem;
+}
+
+.comment-footer .deleteButton {
+  margin-left: 0.5rem;
+}
+.comment-footer {
+  display: flex;
+  align-items: center;
+}
+
+.comment-footer .timestamp {
+  margin-right: 0.5rem;
+}
+
+.comment-footer .deleteButton {
+  margin-left: 0.5rem;
+}

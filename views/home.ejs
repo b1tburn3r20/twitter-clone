@@ -1,98 +1,98 @@
-<%- include('./partials/navbar.ejs') %>
-<%- include('./partials/header.ejs') %>
+  <%- include('./partials/navbar.ejs') %>
+  <%- include('./partials/header.ejs') %>
 
-<div class="brand">
-  <i class="fa-brands fa-twitter"></i>
-  <h1>Blabber</h1>
-</div>
+  <div class="brand">
+    <i class="fa-brands fa-twitter"></i>
+    <h1>Blabber</h1>
+  </div>
 
-<section class="main-section">
-  <!-- New post form -->
-  <form action="/posts/new" method="POST">
-    <div class="input-container">
-      <input id="postInput" class="input-field" name="postContent" type="text" placeholder="What is happening?!">
-      <button id="postBtn" class="submit-button" type="submit">Post</button>
-    </div>
-  </form>
+  <section class="main-section">
+    <!-- New post form -->
+    <form action="/posts/new" method="POST">
+      <div class="input-container">
+        <input id="postInput" class="input-field" name="postContent" type="text" placeholder="What is happening?!">
+        <button id="postBtn" class="submit-button" type="submit">Post</button>
+      </div>
+    </form>
 
-  <div class="feed">
-    <% allPosts.forEach(post => { %>
-    <div class="post">
-      <div class="post-header">
-        <img alt="avatar" class="avatar" src="<%= post.profilePicture %>" referrerpolicy="no-referrer">
-        <div class="username-container">
-          <p class="username">@<%= post.userName %></p>
+    <div class="feed">
+      <% allPosts.forEach(post => { %>
+      <div class="post">
+        <div class="post-header">
+          <img alt="avatar" class="avatar" src="<%= post.profilePicture %>" referrerpolicy="no-referrer">
+          <div class="username-container">
+            <p class="username">@<%= post.userName %></p>
+          </div>
         </div>
-      </div>
-      <div class="post-body">
-        <p class="post-content"><%= post.postContent %></p>
-      </div>
-      <div class="post-footer">
-        <p class="timestamp"><%= post.createdAt.toLocaleDateString() %></p>
-        <!-- Delete post form -->
-        <form action="/posts/<%= post._id %>/delete?_method=DELETE" method="POST" class="delete-form">
-          <button class="deleteButton" type="submit">Delete</button>
+        <div class="post-body">
+          <p class="post-content"><%= post.postContent %></p>
+        </div>
+        <div class="post-footer">
+          <p class="timestamp"><%= post.createdAt.toLocaleDateString() %></p>
+          <!-- Delete post form -->
+          <form action="/posts/<%= post._id %>/delete?_method=DELETE" method="POST" class="delete-form">
+            <button class="deleteButton" type="submit">Delete</button>
+          </form>
+          <!-- Edit post form, initially hidden -->
+          <form class="editForm" action="/posts/<%= post._id %>?_method=PUT" method="POST" style="display: none;">
+            <input name="postContent" type="text" value="<%= post.postContent %>">
+            <button class="editButton" type="submit">Save</button>
+          </form>
+          <!-- Edit post button -->
+          <button class="editButton">Edit</button>
+        </div>
+        <!-- Add a comment form -->
+        <form action="/posts/<%= post._id %>/comments" method="POST" class="comment-form">
+          <input name="content" class="input-field" type="text" placeholder="Add a comment">
+          <button type="submit" class="submit-button">Comment</button>
         </form>
-        <!-- Edit post form, initially hidden -->
-        <form class="editForm" action="/posts/<%= post._id %>?_method=PUT" method="POST" style="display: none;">
-          <input name="postContent" type="text" value="<%= post.postContent %>">
-          <button class="editButton" type="submit">Save</button>
-        </form>
-        <!-- Edit post button -->
-        <button class="editButton">Edit</button>
-      </div>
-      <!-- Add a comment form -->
-      <form action="/posts/<%= post._id %>/comments" method="POST" class="comment-form">
-        <input name="content" class="input-field" type="text" placeholder="Add a comment">
-        <button type="submit" class="submit-button">Comment</button>
-      </form>
-      <!-- Comments section -->
-      <div class="comments-section">
-        <% if (post.comments && post.comments.length > 0) { %>
-        <% post.comments.forEach(comment => { %>
-        <div class="comment">
-          <div class="comment-user">
-            <img alt="avatar" class="avatar" src="<%= comment.userProfilePicture %>" referrerpolicy="no-referrer">
-            <div class="username-container">
-              <p class="username">@<%= comment.userName %></p>
+        <!-- Comments section -->
+        <div class="comments-section">
+          <% if (post.comments && post.comments.length > 0) { %>
+          <% post.comments.forEach(comment => { %>
+          <div class="comment">
+            <div class="comment-user">
+              <img alt="avatar" class="avatar" src="<%= comment.userProfilePicture %>" referrerpolicy="no-referrer">
+              <div class="username-container">
+                <p class="username">@<%= comment.userName %></p>
+              </div>
+            </div>
+            <!-- Only the comment's content should be in the .comment-content div -->
+            <div class="comment-content">
+              <p class="comment-text"><%= comment.content %></p>
+            </div>
+            <!-- The timestamp and delete button should be in the .comment-footer div -->
+            <div class="comment-footer">
+              <p class="timestamp"><%= comment.createdAt.toLocaleDateString() %></p>
+              <!-- Delete comment form -->
+              <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST"
+                class="delete-form">
+                <button class="deleteButton" type="submit">Delete Comment</button>
+              </form>
             </div>
           </div>
-          <!-- Only the comment's content should be in the .comment-content div -->
-          <div class="comment-content">
-            <p class="comment-text"><%= comment.content %></p>
-          </div>
-          <!-- The timestamp and delete button should be in the .comment-footer div -->
-          <div class="comment-footer">
-            <p class="timestamp"><%= comment.createdAt.toLocaleDateString() %></p>
-            <!-- Delete comment form -->
-            <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST"
-              class="delete-form">
-              <button class="deleteButton" type="submit">Delete Comment</button>
-            </form>
-          </div>
+          <% }); %>
+          <% } else { %>
+          <% } %>
+
         </div>
-        <% }); %>
-        <% } else { %>
-        <% } %>
-
       </div>
+      <% }); %>
     </div>
-    <% }); %>
-  </div>
-</section>
+  </section>
 
-<%- include('./partials/footer.ejs') %>
+  <%- include('./partials/footer.ejs') %>
 
-<script>
-    // Attach click event listener to each 'Edit' button
-    document.querySelectorAll('.editButton').forEach(button => {
-        button.addEventListener('click', (event) => {
-            // Get the grandparent 'post' div
-            const post = event.target.parentElement.parentElement;
-            
-            // Hide the corresponding post content and show the edit form
-            post.querySelector('.post-content').style.display = 'none';
-            post.querySelector('.editForm').style.display = 'block';
-        });
-    });
-</script>
+  <script>
+      // Attach click event listener to each 'Edit' button
+      document.querySelectorAll('.editButton').forEach(button => {
+          button.addEventListener('click', (event) => {
+              // Get the grandparent 'post' div
+              const post = event.target.parentElement.parentElement;
+              
+              // Hide the corresponding post content and show the edit form
+              post.querySelector('.post-content').style.display = 'none';
+              post.querySelector('.editForm').style.display = 'block';
+          });
+      });
+  </script>
