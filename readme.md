@@ -1,5 +1,7 @@
 App Title: Blabber
 
+simple social media posting and commenting app
+
 Technologies Used: EJS, Express, CSS, Javascript, MongoDB + Mongoose + more
 
 https://blabber410.herokuapp.com/posts
