@@ -7,7 +7,9 @@
   </div>
 
   <section class="main-section">
+
     <!-- New post form -->
+    
     <form action="/posts/new" method="POST">
       <div class="input-container">
         <input id="postInput" class="input-field" name="postContent" type="text" placeholder="What is happening?!">
@@ -29,24 +31,34 @@
         </div>
         <div class="post-footer">
           <p class="timestamp"><%= post.createdAt.toLocaleDateString() %></p>
+          
           <!-- Delete post form -->
+
           <form action="/posts/<%= post._id %>/delete?_method=DELETE" method="POST" class="delete-form">
             <button class="deleteButton" type="submit">Delete</button>
           </form>
-          <!-- Edit post form, initially hidden -->
+
+          <!-- Edit post form -->
+
           <form class="editForm" action="/posts/<%= post._id %>?_method=PUT" method="POST" style="display: none;">
             <input name="postContent" type="text" value="<%= post.postContent %>">
             <button class="editButton" type="submit">Save</button>
           </form>
+
           <!-- Edit post button -->
+          
           <button class="editButton">Edit</button>
         </div>
-        <!-- Add a comment form -->
+
+        <!-- comment form -->
+
         <form action="/posts/<%= post._id %>/comments" method="POST" class="comment-form">
           <input name="content" class="input-field" type="text" placeholder="Add a comment">
           <button type="submit" class="submit-button">Comment</button>
         </form>
+
         <!-- Comments section -->
+
         <div class="comments-section">
           <% if (post.comments && post.comments.length > 0) { %>
           <% post.comments.forEach(comment => { %>
@@ -57,14 +69,20 @@
                 <p class="username">@<%= comment.userName %></p>
               </div>
             </div>
+
             <!-- Only the comment's content should be in the .comment-content div -->
+
             <div class="comment-content">
               <p class="comment-text"><%= comment.content %></p>
             </div>
-            <!-- The timestamp and delete button should be in the .comment-footer div -->
+
+            <!-- The timestamp and delete button -->
+
             <div class="comment-footer">
               <p class="timestamp"><%= comment.createdAt.toLocaleDateString() %></p>
+
               <!-- Delete comment form -->
+
               <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST"
                 class="delete-form">
                 <button class="deleteButton" type="submit">Delete Comment</button>

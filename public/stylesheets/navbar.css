@@ -7,40 +7,40 @@ body {
   background-color: #15202B;
   color: #FFFFFF;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 1.2rem; /* Adjust as needed */
+  font-size: 1.2rem;
 }
 
 .navbar {
-  width: 250px; /* Adjusted to make navbar wider */
+  width: 250px;
   height: 100vh;
   position: fixed;
   background-color: #192734;
-  display: flex; /* Added to help center items */
-  z-index: 9999; /* Set a higher z-index to appear on top of other elements */
+  display: flex;
+  z-index: 9999;
 }
 
 .navbar-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  width: 100%; /* Full width to take up all the navbar space */
-  display: flex; /* Added to help center items */
-  flex-direction: column; /* Stack the items vertically */
-  align-items: center; /* Center items horizontally since direction is column */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navbar-item {
-  padding: 1.5rem; /* Adjust as needed */
-  text-align: center; /* Center the text */
-  width: 100%; /* Full width to take up all the navbar space */
+  padding: 1.5rem;
+  text-align: center;
+  width: 100%;
 }
 
 .navbar-item a {
   color: #FFFFFF;
   text-decoration: none;
-  display: flex; /* Added to help center items and text */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-item a:hover,

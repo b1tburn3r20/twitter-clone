@@ -68,11 +68,10 @@ async function createComment(req, res) {
         const newComment = {
             ...req.body,
             user: req.user._id,
-            userName: req.user.displayName || 'Anonymous', // Use 'Anonymous' if displayName is not available
-            userAvatar: req.user.photos?.[0]?.value || '', // Use an empty string if photos is not available or the URL is not available
+            userName: req.user.displayName || 'Anonymous', // Using 'Anonymous' if displayName is not available
+            userAvatar: req.user.photos?.[0]?.value || '', // Using an empty string if photos is not available or the URL is not available
         };
 
-        // We can push (or unshift) subdocs into Mongoose arrays
         post.comments.push(newComment);
         await post.save();
 

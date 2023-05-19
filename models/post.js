@@ -12,7 +12,7 @@ const commentSchema = new Schema({
 });
 
 const postSchema = new Schema({
-    userId: Schema.Types.ObjectId,  // Add this line
+    userId: Schema.Types.ObjectId,
     userName: String,
     profilePicture: String,
     postContent: String,

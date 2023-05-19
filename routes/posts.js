@@ -8,8 +8,8 @@ router.get('/', postCtrl.show)
 router.post('/new', postCtrl.create)
 router.delete('/:id/delete', postCtrl.deletePost)
 
-router.get('/:id/edit', postCtrl.editForm); // Show the edit form
-router.put('/:id', postCtrl.update); // Update the post
+router.get('/:id/edit', postCtrl.editForm);
+router.put('/:id', postCtrl.update);
 
 
 

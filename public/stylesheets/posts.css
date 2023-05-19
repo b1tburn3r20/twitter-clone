@@ -1,5 +1,5 @@
 section {
-  margin-left: 260px; /* Adjusted to account for wider navbar */
+  margin-left: 260px;
   padding: 2rem;
 }
 
@@ -126,9 +126,9 @@ section {
   cursor: pointer;
   margin-right: 0.5rem;
 }
-/* General styles */
+
 .section {
-  margin-left: 260px; /* Adjusted to account for wider navbar */
+  margin-left: 260px;
   padding: 2rem;
 }
 
@@ -226,7 +226,7 @@ section {
   color: #FFFFFF;
 }
 
-/* Additional styles for edit post, delete post, and delete comment buttons */
+
 .deleteButton,
 .timestamp,
 .editButton {
@@ -254,7 +254,7 @@ section {
     color: lightgrey;
     text-decoration: underline;
 }
-/* Container for each comment */
+
 .comment {
   display: flex;
   flex-direction: column;
@@ -264,7 +264,7 @@ section {
   margin-bottom: 1rem;
 }
 
-/* The comment's content */
+
 .comment-content {
   background-color: transparent;
   padding: 1rem;
@@ -276,14 +276,14 @@ section {
   margin-bottom: 0.5rem;
 }
 
-/* Container for the timestamp and delete button */
+
 .comment-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Adjustments for the timestamp and delete button */
+
 .comment-footer .timestamp,
 .comment-footer .deleteButton {
   margin: 0;
@@ -292,7 +292,7 @@ section {
 .brand {
   display: flex;
   align-items: center;
-  justify-content: center; /* Added to horizontally center the content */
+  justify-content: center;
   background-color: rgb(21,32,43);
   padding: 1rem;
   position: sticky;
@@ -313,11 +313,11 @@ section {
 }
 
 .main-section {
-  margin-top: 80px; /* Adjust this value to accommodate the navbar height */
+  margin-top: 80px;
   padding: 2rem;
 }
 
-/* Scrollbar styles */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -339,20 +339,20 @@ section {
   font-size: 1rem;
 }
 .comment {
-  font-size: 0.7rem; /* Adjust the font size as needed */
+  font-size: 0.7rem;
 }
 
 .comment img {
-  width: 35px; /* Adjust the image size as needed */
+  width: 35px;
   height: 35px;
 }
 
 .comment .username {
-  font-size: 0.9rem; /* Adjust the font size as needed */
+  font-size: 0.9rem;
 }
 
 .comment .comment-text {
-  font-size: 0.9rem; /* Adjust the font size as needed */
+  font-size: 0.9rem;
 }
 .comment-footer {
   display: flex;
